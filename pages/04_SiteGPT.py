@@ -8,6 +8,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 import requests
 
+llm = ChatOpenAI(temperature=0.1, api_key=api_key)
 
 def is_valid_key(key):
     headers = {"Authorization": f"Bearer {key}"}
@@ -140,7 +141,6 @@ with st.sidebar:
     if api_key:
         if is_valid_key(api_key):
             st.write("valid")
-            llm = ChatOpenAI(temperature=0.1, api_key=api_key)
             
             retriever = load_website(url, api_key)
             query = st.text_input("Ask questions about the Document")
